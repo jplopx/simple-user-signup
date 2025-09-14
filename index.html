@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <header>
-            <img src="https://lh3.google.com/u/0/d/1Zo-QuyHahtfziPaYGJxMaDGOxM6oYgSO=w1920-h919-iv1?auditContext=prefetch"
+            <img src="https://lh3.google.com/u/0/d/1CXjNcvtPPu2hohtr4fdv-aXa-AA0cNos=w1365-h919-iv1?auditContext=forDisplay"
             alt="Logo PetDex"
             class="header-icon">
         <h1>Cadastrar-se</h1>
@@ -27,7 +27,7 @@
                 <!-- CPF -->
                 <div class="form-group">
                     <label for="cpf">CPF</label>
-                    <input type="text" id="cpf" name="cpf" required placeholder="Digite seu CPF" maxlength="14">
+                    <input type="text" id="cpf" name="cpf" required placeholder="Digite seu CPF">
                 </div>
 
                 <!-- Data de Nascimento -->
@@ -88,7 +88,7 @@
                         <option value="PB">PB</option>
                         <option value="PR">PR</option>
                         <option value="PE">PE</option>
-                        <option value="PI">PI</option>
+							<option value="PI">PI</option>
                         <option value="RJ">RJ</option>
                         <option value="RN">RN</option>
                         <option value="RS">RS</option>
@@ -107,8 +107,8 @@
         </main>
 
         <footer>
-            <p>© 2025 PetDex. Todos os direitos estão esquerdos. 🐶</p>
-            <p style="font-size: 0.8rem; color: #aaa;">Obrigado por cuidar dos nossos melhores amigos!</p>
+            <p class="rodape"> © 2025 PetDex. Todos os direitos estão esquerdos. 🐶</p>
+            <p class="rodape2">Obrigado por cuidar dos nossos melhores amigos!</p>
         </footer>
     </div>
 
@@ -162,6 +162,26 @@
             }
             e.target.value = value;
         });
+		
+		// formatação automática do cpf
+		document.getElementById("cpf").addEventListener("input", function(e) {
+			let value = e.target.value.replace (/\D/g, "");
+			if (value.length > 11) {
+				value = value.slice(0, 11);
+			}
+			
+			if (value.length <= 3) {
+			} else if (value.length <= 6) {
+				value = value.slice(0, 3) + "." + value.slice(3);
+			} else if (value.length <= 9) {
+				value = value.slice(0, 3) + "." + value.slice(3, 6) + "." + value.slice(6);
+			} else {
+				value = value.slice(0, 3) + "." + value.slice(3, 6) + "." + value.slice(6, 9) + "-" + value.slice(9, 11);
+			}
+			
+			e.target.value = value;
+		});
+		
 
         // modo claro/escuro
         const themeToggle = document.getElementById("theme-toggle");
